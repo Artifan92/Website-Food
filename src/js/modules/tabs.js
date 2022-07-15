@@ -3,7 +3,8 @@ const tabs = document.querySelectorAll('.tabheader__item'),
 
 function hideTabContent() {
 	tabsContent.forEach((tab) => {
-		tab.style.display = 'none';
+		tab.classList.add('hide');
+		tab.classList.remove('show', 'fade');
 	});
 
 	tabs.forEach((tab) => {
@@ -12,7 +13,8 @@ function hideTabContent() {
 }
 
 function showTabContent(i = 0) {
-	tabsContent[i].style.display = 'block';
+	tabsContent[i].classList.add('fade', 'show');
+	tabsContent[i].classList.remove('hide');
 	tabs[i].classList.add('tabheader__item_active');
 }
 
