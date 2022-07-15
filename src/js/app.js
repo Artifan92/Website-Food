@@ -1,5 +1,16 @@
-'use strict'
+'use strict';
+import {
+	hideTabContent,
+	showTabContent,
+	changeTabContent,
+} from './modules/tabs.js';
 
-import isWebp from './modules/IsWebp.js';
+/*Назначение глобального обработчика событий*/
+document.addEventListener('DOMContentLoaded', () => {
+	const tabsParent = document.querySelector('.tabheader__items');
 
-isWebp();
+	hideTabContent();
+	showTabContent();
+
+	tabsParent.addEventListener('click', changeTabContent);
+});
