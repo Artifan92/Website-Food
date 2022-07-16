@@ -1,9 +1,15 @@
 function getTimeRemaining(endTime) {
-	const timeDiference = Date.parse(endTime) - Date.parse(new Date()),
-		days = Math.floor(timeDiference / (1000 * 60 * 60 * 24)),
-		hours = Math.floor((timeDiference / (1000 * 60 * 60)) % 24),
-		minutes = Math.floor((timeDiference / (1000 * 60)) % 60),
-		seconds = Math.floor((timeDiference / 1000) % 60);
+	let days, hours, minutes, seconds;
+	const timeDiference = Date.parse(endTime) - Date.parse(new Date());
+
+	if (timeDiference <= 0) {
+		(days = 0), (hours = 0), (minutes = 0), (seconds = 0);
+	} else {
+		(days = Math.floor(timeDiference / (1000 * 60 * 60 * 24))),
+			(hours = Math.floor((timeDiference / (1000 * 60 * 60)) % 24)),
+			(minutes = Math.floor((timeDiference / (1000 * 60)) % 60)),
+			(seconds = Math.floor((timeDiference / 1000) % 60));
+	}
 
 	return {
 		total: timeDiference,
