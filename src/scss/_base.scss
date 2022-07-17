@@ -55,26 +55,3 @@ a {
 	font-size: 36px;
 	font-weight: 400;
 }
-
-.show {
-	display: block;
-	transition: all 0.5s ease;
-}
-
-.hide {
-	display: none;
-	transition: all 0.5s ease;
-}
-
-.fade {
-	animation: fade 1.5s;
-}
-
-@keyframes fade {
-	from {
-		opacity: 0.1;
-	}
-	to {
-		opacity: 1;
-	}
-}

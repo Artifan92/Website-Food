@@ -12,3 +12,26 @@
 @import './blocks/promotion/promotion';
 @import './blocks/footer/footer';
 @import './blocks/modal/modal';
+
+.show {
+	display: block;
+	transition: all 0.5s ease;
+}
+
+.hide {
+	display: none;
+	transition: all 0.5s ease;
+}
+
+.fadeModal {
+	animation: fade 0.5s;
+}
+
+@keyframes fade {
+	from {
+		opacity: 0.1;
+	}
+	to {
+		opacity: 1;
+	}
+}
