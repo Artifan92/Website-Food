@@ -7,7 +7,11 @@ import {
 
 import setClock from './modules/timer.js';
 
-import { showModal, hideModal } from './modules/modal.js';
+import {
+	showModal,
+	hideModal,
+	showModalScrollBottom,
+} from './modules/modal.js';
 
 /*Назначение глобального обработчика событий*/
 document.addEventListener('DOMContentLoaded', () => {
@@ -28,15 +32,25 @@ document.addEventListener('DOMContentLoaded', () => {
 		modalCloseBtn = document.querySelector('[data-modalClose]'),
 		modal = document.querySelector('.modal');
 
+	//showModal
 	modalTrigger.forEach((btn) => {
 		btn.addEventListener('click', showModal);
 	});
+
+	// showModal after scroll End
+	window.addEventListener('scroll', showModalScrollBottom);
+
+	// hideModal
 	modalCloseBtn.addEventListener('click', hideModal);
+
+	// hideModal if click anything
 	modal.addEventListener('click', (event) => {
 		if (event.target && event.target === modal) {
 			hideModal();
 		}
 	});
+
+	// hideModal if tap Escape
 	document.addEventListener('keydown', (event) => {
 		if (event.code === 'Escape' && modal.classList.contains('show')) {
 			hideModal();

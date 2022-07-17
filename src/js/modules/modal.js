@@ -1,8 +1,13 @@
-const modal = document.querySelector('.modal');
+const modal = document.querySelector('.modal'),
+	setTimeoutModal = 5000,
+	timeoutShowModal = setTimeout(showModal, setTimeoutModal);
+
 function showModal() {
 	modal.classList.remove('hide');
 	modal.classList.add('show', 'fadeModal');
 	document.body.style.overflow = 'hidden';
+	clearTimeout(timeoutShowModal);
+	window.removeEventListener('scroll', showModalScrollBottom);
 }
 
 function hideModal() {
@@ -11,4 +16,13 @@ function hideModal() {
 	modal.classList.add('hide');
 }
 
-export { showModal, hideModal };
+function showModalScrollBottom() {
+	if (
+		window.pageYOffset + document.body.clientHeight >=
+		document.documentElement.scrollHeight
+	) {
+		showModal();
+	}
+}
+
+export { showModal, hideModal, showModalScrollBottom };
