@@ -13,6 +13,8 @@ import {
 	showModalScrollBottom,
 } from './modules/modal.js';
 
+import { menuItem, MenuCard } from './modules/menu.js';
+
 /*Назначение глобального обработчика событий*/
 document.addEventListener('DOMContentLoaded', () => {
 	//TABS
@@ -56,4 +58,16 @@ document.addEventListener('DOMContentLoaded', () => {
 			hideModal();
 		}
 	});
+
+	// ADD ITEM MENU
+	//устангавливаем место создания элементов
+	const menuParentSelector = '.menu .container';
+
+	//очищаем этот элемент
+	document.querySelector(menuParentSelector).innerHTML = '';
+
+	//создаем элементы, данные берем из объектов массива
+	for (let menu of menuItem) {
+		new MenuCard(menu, menuParentSelector).render();
+	}
 });
