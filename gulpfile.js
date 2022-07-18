@@ -10,7 +10,7 @@ import plugins from './gulp/config/plugins.js';
 // Импорт задач
 import server from './gulp/tasks/server.js';
 import copy from './gulp/tasks/copy.js';
-import reset from './gulp/tasks/reset.js';
+import { reset, resetServer } from './gulp/tasks/reset.js';
 import html from './gulp/tasks/html.js';
 import scss from './gulp/tasks/scss.js';
 import js from './gulp/tasks/js.js';
@@ -46,11 +46,24 @@ const converterFonts = gulp.series(otfToTtf, ttfToWoff, fontsStyle);
 const deployZip = gulp.series(reset, converterFonts, mainTasks, zip);
 const deployFTP = gulp.series(reset, converterFonts, mainTasks, ftp);
 
-const dev = gulp.series(reset, converterFonts, mainTasks, watcherServer);
+const dev = gulp.series(
+	reset,
+	resetServer,
+	converterFonts,
+	mainTasks,
+	watcherServer
+);
+const localServer = gulp.series(
+	reset,
+	resetServer,
+	converterFonts,
+	mainTasks,
+	watcher
+);
 const build = gulp.series(reset, converterFonts, mainTasks);
 
 // Экспорт сценариев
-export { svgSprive, dev, build, deployZip, deployFTP, newFolder };
+export { svgSprive, dev, build, deployZip, deployFTP, newFolder, localServer };
 
 // Выполнение сценария по умолчанию
 gulp.task('default', dev);

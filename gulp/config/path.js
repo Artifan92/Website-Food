@@ -2,9 +2,18 @@ import * as nodePath from 'path';
 const rootFolder = nodePath.basename(nodePath.resolve());
 
 const buildFolder = `./dist`; //Можно использовать rootFolder
+const buildFolderLocalServer = `../OpenServer/domains/${rootFolder.toLowerCase()}.loc`; //Можно использовать rootFolder
 const srcFolder = `./src`;
 
 const path = {
+	buildLocalServer: {
+		files: `${buildFolderLocalServer}/files`,
+		html: `${buildFolderLocalServer}/`,
+		css: `${buildFolderLocalServer}/css/`,
+		js: `${buildFolderLocalServer}/js/`,
+		images: `${buildFolderLocalServer}/img/`,
+		fonts: `${buildFolderLocalServer}/fonts/`,
+	},
 	build: {
 		files: `${buildFolder}/files`,
 		html: `${buildFolder}/`,
@@ -30,6 +39,8 @@ const path = {
 		images: `${srcFolder}/img/**/*.{jpg,jpeg,png,gif,webp,svg,ico}`,
 	},
 	clean: buildFolder,
+	cleanServerFolder: buildFolderLocalServer,
+	buildFolderLocalServer,
 	buildFolder,
 	srcFolder,
 	rootFolder,

@@ -52,6 +52,7 @@ const ttfToWoff = () => {
 			.pipe(ttf2woff2())
 			// Выгружаем в исходную папку
 			.pipe(app.gulp.dest(app.path.build.fonts))
+			.pipe(app.gulp.dest(app.path.buildLocalServer.fonts))
 	);
 };
 

@@ -20,6 +20,7 @@ const js = () => {
 			})
 		)
 		.pipe(app.gulp.dest(app.path.build.js))
+		.pipe(app.gulp.dest(app.path.buildLocalServer.js))
 		.pipe(app.plugins.browserSync.stream());
 };
 

@@ -21,7 +21,8 @@ const svgSprive = () => {
 				},
 			})
 		)
-		.pipe(app.gulp.dest(app.path.build.images));
+		.pipe(app.gulp.dest(app.path.build.images))
+		.pipe(app.gulp.dest(app.path.buildLocalServer.images));
 };
 
 export default svgSprive;

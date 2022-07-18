@@ -55,6 +55,7 @@ const scss = () => {
 				})
 			)
 			.pipe(app.gulp.dest(app.path.build.css))
+			.pipe(app.gulp.dest(app.path.buildLocalServer.css))
 			.pipe(app.plugins.browserSync.stream())
 	);
 };
