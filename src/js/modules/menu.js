@@ -33,6 +33,7 @@ class MenuCard {
 		this.title = arrey.title;
 		this.descr = arrey.descr;
 		this.price = arrey.price;
+		this.classDefault = 'menu__item';
 		this.classes = classes;
 		this.transfer = 38;
 		this.parent = document.querySelector(parentSelector);
@@ -45,11 +46,11 @@ class MenuCard {
 	render() {
 		const element = document.createElement('div');
 
-		if (this.classes.length == 0) {
-			this.classes = ['menu__item'];
+		if (this.classes.length === 0) {
+			element.classList.add(this.classDefault);
+		} else {
+			this.classes.forEach((className) => element.classList.add(className));
 		}
-
-		this.classes.forEach((className) => element.classList.add(className));
 
 		element.innerHTML = `					
 			<img src=${this.src} alt=${this.alt}>
