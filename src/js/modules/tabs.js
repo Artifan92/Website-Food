@@ -1,5 +1,6 @@
 const tabs = document.querySelectorAll('.tabheader__item'),
-	tabsContent = document.querySelectorAll('.tabcontent');
+	tabsContent = document.querySelectorAll('.tabcontent'),
+	tabsParent = document.querySelector('.tabheader__items');
 
 function hideTabContent() {
 	tabsContent.forEach((tab) => {
@@ -30,4 +31,4 @@ function changeTabContent(event) {
 	}
 }
 
-export { hideTabContent, showTabContent, changeTabContent };
+export { hideTabContent, showTabContent, changeTabContent, tabsParent };

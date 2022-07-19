@@ -2,7 +2,7 @@ import * as nodePath from 'path';
 const rootFolder = nodePath.basename(nodePath.resolve());
 
 const buildFolder = `./dist`; //Можно использовать rootFolder
-const buildFolderLocalServer = `../OpenServer/domains/${rootFolder.toLowerCase()}.loc`; //Можно использовать rootFolder
+const buildFolderLocalServer = `../domains/${rootFolder.toLowerCase()}.loc`; //Можно использовать rootFolder
 const srcFolder = `./src`;
 
 const path = {

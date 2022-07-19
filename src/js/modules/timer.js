@@ -1,3 +1,5 @@
+const deadline = '2022-09-08';
+
 function getTimeRemaining(endTime) {
 	let days, hours, minutes, seconds;
 	const timeDiference = Date.parse(endTime) - Date.parse(new Date());
@@ -52,4 +54,4 @@ function setClock(selector, endTime) {
 	}
 }
 
-export default setClock;
+export { setClock, deadline };

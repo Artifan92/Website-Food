@@ -1,3 +1,4 @@
+const menuParentSelector = '.menu .container';
 const menuItem = [
 	{
 		id: 'menuFit',
@@ -66,4 +67,4 @@ class MenuCard {
 	}
 }
 
-export { menuItem, MenuCard };
+export { menuItem, MenuCard, menuParentSelector };
