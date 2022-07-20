@@ -1,36 +1,9 @@
 const menuParentSelector = '.menu .container';
-const menuItem = [
-	{
-		id: 'menuFit',
-		title: `Меню "Фитнес"`,
-		descr: `Меню "Фитнес" - это новый подход к приготовлению блюд: больше свежих овощей и фруктов. Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!`,
-		price: 9,
-		src: 'img/tabs/vegy.jpg',
-		alt: 'vegy',
-	},
-	{
-		id: 'menuPremium',
-		title: `Меню “Премиум”`,
-		descr: `В меню “Премиум” мы используем не только красивый дизайн упаковки, но и качественное исполнение блюд. Красная рыба, морепродукты, фрукты - ресторанное меню без похода в ресторан!`,
-		price: 18,
-		src: 'img/tabs/elite.jpg',
-		alt: 'elite',
-	},
-	{
-		id: 'menuPost',
-		title: `Меню "Постное"`,
-		descr: `Меню “Постное” - это тщательный подбор ингредиентов: полное отсутствие продуктов животного происхождения, молоко из миндаля, овса, кокоса или гречки, правильное количество белков за счет тофу и импортных вегетарианских стейков.`,
-		price: 11,
-		src: 'img/tabs/post.jpg',
-		alt: 'post',
-	},
-];
 
 class MenuCard {
 	constructor(arrey, parentSelector, ...classes) {
-		this.id = arrey.id;
-		this.src = arrey.src;
-		this.alt = arrey.alt;
+		this.src = arrey.img;
+		this.alt = arrey.altimg;
 		this.title = arrey.title;
 		this.descr = arrey.descr;
 		this.price = arrey.price;
@@ -67,4 +40,4 @@ class MenuCard {
 	}
 }
 
-export { menuItem, MenuCard, menuParentSelector };
+export { menuParentSelector, MenuCard };

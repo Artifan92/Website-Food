@@ -1,3 +1,5 @@
+import { postData } from '../modules/server.js';
+
 const modal = document.querySelector('.modal'),
 	setTimeoutModal = 5000,
 	timeoutShowModal = setTimeout(showModal, setTimeoutModal),
@@ -60,7 +62,7 @@ function showThanksModal(message) {
 	}, 4000);
 }
 
-function postData(form) {
+function bindPostData(form) {
 	form.addEventListener('submit', (event) => {
 		event.preventDefault();
 
@@ -73,49 +75,25 @@ function postData(form) {
 		form.insertAdjacentElement('afterend', statusMessage);
 
 		const formData = new FormData(form),
-			object = {},
-			encoded = window.btoa('root:root'),
-			auth = 'Basic' + encoded,
-			h = new Headers();
+			json = JSON.stringify(Object.fromEntries(formData.entries()));
 
-		formData.forEach((value, key) => {
-			object[key] = value;
-		});
-
-		h.append = ('Content-Type', 'application/json');
-		// h.append = ('Authorization', auth);
-
-		fetch('server.php', {
-			method: 'POST',
-			headers: h,
-			body: JSON.stringify(object),
-		})
+		postData('http://localhost:3000/requests', json)
 			.then((data) => {
-				data.text();
+				console.log(data);
+				showThanksModal(message.success);
+				statusMessage.remove();
 			})
-			.then((dat) => {
-				console.log(dat);
+			.catch(() => {
+				showThanksModal(message.failure);
+			})
+			.finally(() => {
+				form.reset();
+				setTimeout(() => {
+					hideModal();
+				}, 2000);
 			});
-		// .then((data) => {
-		// 	console.log(data);
-		// 	showThanksModal(message.success);
-		// 	statusMessage.remove();
-		// })
-		// .catch(() => {
-		// 	showThanksModal(message.failure);
-		// })
-		// .finally(() => {
-		// 	form.reset();
-		// 	setTimeout(() => {
-		// 		hideModal();
-		// 	}, 2000);
-		// });
 	});
 }
-
-forms.forEach((item) => {
-	postData(item);
-});
 
 export {
 	showModal,
@@ -125,4 +103,6 @@ export {
 	message,
 	modalTrigger,
 	modal,
+	forms,
+	bindPostData,
 };

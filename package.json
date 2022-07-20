@@ -6,13 +6,12 @@
   "type": "module",
   "scripts": {
     "dev": "gulp",
-		"locServ": "gulp localServer",
+    "locServ": "gulp localServer",
     "build": "gulp build --build",
     "svgSprive": "gulp svgSprive",
     "zip": "gulp deployZip --build",
     "ftp": "gulp deployFTP --build",
-		"newFolder": "gulp newFolder"
-
+    "newFolder": "gulp newFolder"
   },
   "author": "Artem Balandin",
   "license": "ISC",
@@ -43,6 +42,7 @@
     "gulp-webp-html-nosvg": "latest",
     "gulp-webpcss": "latest",
     "gulp-zip": "latest",
+    "json-server": "^0.17.0",
     "sass": "latest",
     "vinyl-ftp": "latest",
     "webp-converter": "2.2.3",

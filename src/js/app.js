@@ -12,13 +12,15 @@ import {
 	showModal,
 	hideModal,
 	showModalScrollBottom,
-	showThanksModal,
-	message,
 	modalTrigger,
 	modal,
+	forms,
+	bindPostData,
 } from './modules/modal.js';
 
-import { menuItem, MenuCard, menuParentSelector } from './modules/menu.js';
+import { menuParentSelector, MenuCard } from './modules/menu.js';
+
+import { getResource } from './modules/server.js';
 
 /*Назначение глобального обработчика событий*/
 document.addEventListener('DOMContentLoaded', () => {
@@ -56,13 +58,15 @@ document.addEventListener('DOMContentLoaded', () => {
 			hideModal();
 		}
 	});
+});
 
-	// ADD ITEM MENU
-	//очищаем этот элемент
-	document.querySelector(menuParentSelector).innerHTML = '';
+forms.forEach((item) => {
+	bindPostData(item);
+});
 
-	//создаем элементы, данные берем из объектов массива
-	for (let menu of menuItem) {
-		new MenuCard(menu, menuParentSelector).render();
-	}
+//MENU
+getResource('http://localhost:3000/menu').then((data) => {
+	data.forEach((obj) => {
+		new MenuCard(obj, menuParentSelector).render();
+	});
 });
