@@ -1,7 +1,7 @@
 import { postData } from '../modules/server.js';
 
 const modal = document.querySelector('.modal'),
-	setTimeoutModal = 5000,
+	setTimeoutModal = 50000,
 	timeoutShowModal = setTimeout(showModal, setTimeoutModal),
 	prevModalDiaolog = document.querySelector('.modal__dialog'),
 	modalTrigger = document.querySelectorAll('[data-modal]'),

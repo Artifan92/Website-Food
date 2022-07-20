@@ -54,4 +54,4 @@ function setClock(selector, endTime) {
 	}
 }
 
-export { setClock, deadline };
+export { setClock, deadline, getZero };
