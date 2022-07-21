@@ -24,6 +24,18 @@ import { getResource } from './modules/server.js';
 
 import { swiperOffer, swiperMenu } from './modules/slider.js';
 
+import {
+	calcTotal,
+	infoPersonToCalc,
+	sexActivityPerson,
+	changeSexActivityToPerson,
+	heightPerson,
+	weightPerson,
+	agePerson,
+	changeInputInfo,
+	defaultToCalc,
+} from './modules/calc.js';
+
 /*Назначение глобального обработчика событий*/
 document.addEventListener('DOMContentLoaded', () => {
 	//TABS
@@ -77,3 +89,17 @@ getResource('http://localhost:3000/menu').then((data) => {
 		).render();
 	});
 });
+
+//CALCULATOR
+defaultToCalc();
+calcTotal(infoPersonToCalc);
+
+sexActivityPerson.forEach((person) => {
+	person.addEventListener('click', changeSexActivityToPerson);
+});
+
+changeInputInfo(heightPerson);
+
+changeInputInfo(weightPerson);
+
+changeInputInfo(agePerson);
