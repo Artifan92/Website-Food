@@ -22,12 +22,7 @@ import { menuParentSelector, MenuCard } from './modules/menu.js';
 
 import { getResource } from './modules/server.js';
 
-import {
-	showSlide,
-	offerSlides,
-	offerSliderPrev,
-	offerSliderNext,
-} from './modules/slider.js';
+import { swiper } from './modules/slider.js';
 
 /*Назначение глобального обработчика событий*/
 document.addEventListener('DOMContentLoaded', () => {
@@ -76,25 +71,4 @@ getResource('http://localhost:3000/menu').then((data) => {
 	data.forEach((obj) => {
 		new MenuCard(obj, menuParentSelector).render();
 	});
-});
-
-//SLIDER
-let numSlide = 1;
-
-showSlide(numSlide);
-
-offerSliderPrev.addEventListener('click', () => {
-	numSlide -= 1;
-	if (numSlide <= 0) {
-		numSlide = offerSlides.length;
-	}
-	showSlide(numSlide);
-});
-
-offerSliderNext.addEventListener('click', () => {
-	numSlide += 1;
-	if (numSlide > offerSlides.length) {
-		numSlide = 1;
-	}
-	showSlide(numSlide);
 });
