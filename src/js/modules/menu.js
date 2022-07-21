@@ -1,4 +1,4 @@
-const menuParentSelector = '.menu .container';
+const menuParentSelector = '.menu .container .swiperMenu .swiper-wrapper';
 
 class MenuCard {
 	constructor(arrey, parentSelector, ...classes) {

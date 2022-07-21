@@ -22,7 +22,7 @@ import { menuParentSelector, MenuCard } from './modules/menu.js';
 
 import { getResource } from './modules/server.js';
 
-import { swiper } from './modules/slider.js';
+import { swiperOffer, swiperMenu } from './modules/slider.js';
 
 /*Назначение глобального обработчика событий*/
 document.addEventListener('DOMContentLoaded', () => {
@@ -69,6 +69,11 @@ forms.forEach((item) => {
 //MENU
 getResource('http://localhost:3000/menu').then((data) => {
 	data.forEach((obj) => {
-		new MenuCard(obj, menuParentSelector).render();
+		new MenuCard(
+			obj,
+			menuParentSelector,
+			'menu__item',
+			'swiper-slide'
+		).render();
 	});
 });
