@@ -1,57 +1,55 @@
-const deadline = '2022-09-08';
+'use strict';
 
-function getTimeRemaining(endTime) {
-	let days, hours, minutes, seconds;
-	const timeDiference = Date.parse(endTime) - Date.parse(new Date());
+import { getZero } from '../services/services.js';
 
-	if (timeDiference <= 0) {
-		(days = 0), (hours = 0), (minutes = 0), (seconds = 0);
-	} else {
-		(days = Math.floor(timeDiference / (1000 * 60 * 60 * 24))),
-			(hours = Math.floor((timeDiference / (1000 * 60 * 60)) % 24)),
-			(minutes = Math.floor((timeDiference / (1000 * 60)) % 60)),
-			(seconds = Math.floor((timeDiference / 1000) % 60));
-	}
+function timer(deadline, selectorTimer) {
+	function getTimeRemaining() {
+		let days, hours, minutes, seconds;
+		const timeDiference = Date.parse(deadline) - Date.parse(new Date());
 
-	return {
-		total: timeDiference,
-		days,
-		hours,
-		minutes,
-		seconds,
-	};
-}
-
-function getZero(num) {
-	if (num >= 0 && num < 10) {
-		return `0${num}`;
-	} else {
-		return num;
-	}
-}
-
-function setClock(selector, endTime) {
-	const blockTimer = document.querySelector(selector),
-		days = blockTimer.querySelector('#days'),
-		hours = blockTimer.querySelector('#hours'),
-		minutes = blockTimer.querySelector('#minutes'),
-		seconds = blockTimer.querySelector('#seconds'),
-		timeInterval = setInterval(updateClock, 1000);
-
-	updateClock();
-
-	function updateClock() {
-		const timeDiference = getTimeRemaining(endTime);
-
-		days.innerHTML = getZero(timeDiference.days);
-		hours.innerHTML = getZero(timeDiference.hours);
-		minutes.innerHTML = getZero(timeDiference.minutes);
-		seconds.innerHTML = getZero(timeDiference.seconds);
-
-		if (timeDiference.total <= 0) {
-			clearInterval(timeInterval);
+		if (timeDiference <= 0) {
+			(days = 0), (hours = 0), (minutes = 0), (seconds = 0);
+		} else {
+			(days = Math.floor(timeDiference / (1000 * 60 * 60 * 24))),
+				(hours = Math.floor((timeDiference / (1000 * 60 * 60)) % 24)),
+				(minutes = Math.floor((timeDiference / (1000 * 60)) % 60)),
+				(seconds = Math.floor((timeDiference / 1000) % 60));
 		}
+
+		return {
+			total: timeDiference,
+			days,
+			hours,
+			minutes,
+			seconds,
+		};
 	}
+
+	function setClock() {
+		const blockTimer = document.querySelector(selectorTimer),
+			days = blockTimer.querySelector('#days'),
+			hours = blockTimer.querySelector('#hours'),
+			minutes = blockTimer.querySelector('#minutes'),
+			seconds = blockTimer.querySelector('#seconds'),
+			timeInterval = setInterval(updateClock, 1000);
+
+		function updateClock() {
+			const timeDiference = getTimeRemaining(deadline);
+
+			days.innerHTML = getZero(timeDiference.days);
+			hours.innerHTML = getZero(timeDiference.hours);
+			minutes.innerHTML = getZero(timeDiference.minutes);
+			seconds.innerHTML = getZero(timeDiference.seconds);
+
+			if (timeDiference.total <= 0) {
+				clearInterval(timeInterval);
+			}
+		}
+
+		updateClock();
+	}
+
+	setClock();
 }
 
-export { setClock, deadline, getZero };
+export default timer;

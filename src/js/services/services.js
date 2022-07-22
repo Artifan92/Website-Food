@@ -1,3 +1,12 @@
+'use strict';
+function getZero(num) {
+	if (num >= 0 && num < 10) {
+		return `0${num}`;
+	} else {
+		return num;
+	}
+}
+
 async function postData(url, data) {
 	const res = await fetch(url, {
 		method: 'POST',
@@ -20,4 +29,4 @@ async function getResource(url) {
 	return await res.json();
 }
 
-export { postData, getResource };
+export { postData, getResource, getZero };

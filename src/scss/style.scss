@@ -16,15 +16,13 @@
 
 .show {
 	display: block;
-	transition: all 0.5s ease;
 }
 
 .hide {
 	display: none;
-	transition: all 0.5s ease;
 }
 
-.fadeModal {
+.fade {
 	animation: fade 0.5s;
 }
 

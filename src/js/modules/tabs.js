@@ -1,34 +1,51 @@
-const tabs = document.querySelectorAll('.tabheader__item'),
-	tabsContent = document.querySelectorAll('.tabcontent'),
-	tabsParent = document.querySelector('.tabheader__items');
+'use strict';
 
-function hideTabContent() {
-	tabsContent.forEach((tab) => {
-		tab.classList.add('hide');
-		tab.classList.remove('show', 'fade');
-	});
+function tabs(
+	selectorTabsContent,
+	selectorParentMenu,
+	selectorMenu,
+	activeClass,
+	showClass,
+	hideClass,
+	animationClass
+) {
+	const tabsContent = document.querySelectorAll(selectorTabsContent),
+		tabsMenuItems = document.querySelector(selectorParentMenu),
+		tabsMenuItem = document.querySelectorAll(selectorMenu);
 
-	tabs.forEach((tab) => {
-		tab.classList.remove('tabheader__item_active');
-	});
-}
+	function hideTabContents() {
+		tabsContent.forEach((tab) => {
+			tab.classList.add(hideClass);
+			tab.classList.remove(showClass, animationClass);
+		});
 
-function showTabContent(i = 0) {
-	tabsContent[i].classList.add('fade', 'show');
-	tabsContent[i].classList.remove('hide');
-	tabs[i].classList.add('tabheader__item_active');
-}
-
-function changeTabContent(event) {
-	const target = event.target;
-	if (target && target.classList.contains('tabheader__item')) {
-		tabs.forEach((tab, index) => {
-			if (target == tab) {
-				hideTabContent();
-				showTabContent(index);
-			}
+		tabsMenuItem.forEach((tab) => {
+			tab.classList.remove(activeClass);
 		});
 	}
+
+	function showTabContent(i = 0) {
+		tabsContent[i].classList.add(animationClass, showClass);
+		tabsContent[i].classList.remove(hideClass);
+		tabsMenuItem[i].classList.add(activeClass);
+	}
+
+	function changeTabContent(event) {
+		const target = event.target;
+		if (target && target.classList.contains(selectorMenu.slice(1))) {
+			tabsMenuItem.forEach((tab, index) => {
+				if (target == tab) {
+					hideTabContents();
+					showTabContent(index);
+				}
+			});
+		}
+	}
+
+	hideTabContents();
+	showTabContent();
+
+	tabsMenuItems.addEventListener('click', changeTabContent);
 }
 
-export { hideTabContent, showTabContent, changeTabContent, tabsParent };
+export default tabs;

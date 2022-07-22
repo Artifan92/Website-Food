@@ -14,6 +14,7 @@ const js = () => {
 		.pipe(
 			webpack({
 				mode: app.isBuild ? 'production' : 'development',
+				entry: './src/index.js',
 				output: {
 					filename: 'app.min.js',
 				},

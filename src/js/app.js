@@ -1,105 +1,31 @@
 'use strict';
-import {
-	hideTabContent,
-	showTabContent,
-	changeTabContent,
-	tabsParent,
-} from './modules/tabs.js';
 
-import { setClock, deadline } from './modules/timer.js';
+import tabs from './modules/tabs.js';
 
-import {
-	showModal,
-	hideModal,
-	showModalScrollBottom,
-	modalTrigger,
-	modal,
-	forms,
-	bindPostData,
-} from './modules/modal.js';
+import timer from './modules/timer.js';
 
-import { menuParentSelector, MenuCard } from './modules/menu.js';
+import calculator from './modules/calc.js';
 
-import { getResource } from './modules/server.js';
+import modal from './modules/modal.js';
 
-import { swiperOffer, swiperMenu } from './modules/slider.js';
+import menu from './modules/menu.js';
 
-import {
-	calcTotal,
-	infoPersonToCalc,
-	sexActivityPerson,
-	changeSexActivityToPerson,
-	heightPerson,
-	weightPerson,
-	agePerson,
-	changeInputInfo,
-	defaultToCalc,
-} from './modules/calc.js';
+import sliders from './modules/slider.js';
 
 /*Назначение глобального обработчика событий*/
 document.addEventListener('DOMContentLoaded', () => {
-	//TABS
-	hideTabContent();
-	showTabContent();
-
-	tabsParent.addEventListener('click', changeTabContent);
-
-	//TIMERS
-	setClock('.timer', deadline);
-
-	//MODAL
-	//showModal
-	modalTrigger.forEach((btn) => {
-		btn.addEventListener('click', showModal);
-	});
-
-	// showModal after scroll End
-	window.addEventListener('scroll', showModalScrollBottom);
-
-	// hideModal if click anything/showModal
-	modal.addEventListener('click', (event) => {
-		if (
-			(event.target && event.target === modal) ||
-			event.target.getAttribute('data-modalClose') === ''
-		) {
-			hideModal();
-		}
-	});
-
-	// hideModal if tap Escape
-	document.addEventListener('keydown', (event) => {
-		if (event.code === 'Escape' && modal.classList.contains('show')) {
-			hideModal();
-		}
-	});
+	modal('.modal', 500000);
+	tabs(
+		'.tabcontent',
+		'.tabheader__items',
+		'.tabheader__item',
+		'tabheader__item_active',
+		'show',
+		'hide',
+		'fade'
+	);
+	timer('2022-09-08', '.timer');
+	calculator();
+	menu();
+	sliders();
 });
-
-forms.forEach((item) => {
-	bindPostData(item);
-});
-
-//MENU
-getResource('http://localhost:3000/menu').then((data) => {
-	data.forEach((obj) => {
-		new MenuCard(
-			obj,
-			menuParentSelector,
-			'menu__item',
-			'swiper-slide'
-		).render();
-	});
-});
-
-//CALCULATOR
-defaultToCalc();
-calcTotal(infoPersonToCalc);
-
-sexActivityPerson.forEach((person) => {
-	person.addEventListener('click', changeSexActivityToPerson);
-});
-
-changeInputInfo(heightPerson);
-
-changeInputInfo(weightPerson);
-
-changeInputInfo(agePerson);
