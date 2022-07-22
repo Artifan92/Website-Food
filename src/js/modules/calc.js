@@ -13,11 +13,11 @@ function calculator() {
 	};
 
 	const locationCalcResult = document.querySelector(
-			'.calculating__result span'
+			'.calculating__result span',
 		),
 		sexPerson = document.querySelectorAll('#gender .calculating__choose-item'),
 		activityPerson = document.querySelectorAll(
-			'#activity .calculating__choose-item'
+			'#activity .calculating__choose-item',
 		),
 		heightPerson = document.querySelector('#height'),
 		weightPerson = document.querySelector('#weight'),
@@ -38,7 +38,7 @@ function calculator() {
 					13.4 * infoPersonToCalc.weight +
 					4.8 * infoPersonToCalc.height -
 					5.7 * infoPersonToCalc.age) *
-					infoPersonToCalc.activity
+					infoPersonToCalc.activity,
 			); // для мужчин
 		} else if (
 			infoAboutPerson.sex == 'female' &&
@@ -52,7 +52,7 @@ function calculator() {
 					9.2 * infoPersonToCalc.weight +
 					3.1 * infoPersonToCalc.height -
 					4.3 * infoPersonToCalc.age) *
-					infoPersonToCalc.activity
+					infoPersonToCalc.activity,
 			); // для женщин
 		} else {
 			total = '_______';
@@ -62,14 +62,14 @@ function calculator() {
 	}
 
 	function cleanActiveClass(parent, activClass) {
-		parent.forEach((pers) => {
+		parent.forEach(pers => {
 			pers.classList.remove(activClass);
 		});
 	}
 
 	function changeSexToPerson(event) {
 		event.preventDefault();
-		infoPersonToCalc.sexArr.forEach((sex) => {
+		infoPersonToCalc.sexArr.forEach(sex => {
 			if (event.target.getAttribute('id') == sex) {
 				cleanActiveClass(sexPerson, 'calculating__choose-item_active');
 				infoPersonToCalc.sex = sex;
@@ -83,7 +83,7 @@ function calculator() {
 
 	function changeActivityToPerson(event) {
 		event.preventDefault();
-		infoPersonToCalc.activityArr.forEach((activity) => {
+		infoPersonToCalc.activityArr.forEach(activity => {
 			if (event.target.getAttribute('data-activity') == activity) {
 				cleanActiveClass(activityPerson, 'calculating__choose-item_active');
 				infoPersonToCalc.activity = activity;
@@ -96,13 +96,13 @@ function calculator() {
 	}
 
 	function changeInputInfo(parent) {
-		parent.addEventListener('input', (event) => {
+		parent.addEventListener('input', event => {
 			const target = event.target;
 			if (target.value.match(/\D/g)) {
 				target.style.border = '2px solid red';
 			} else {
 				target.style.border = '';
-				infoPersonToCalc.inputArr.forEach((input) => {
+				infoPersonToCalc.inputArr.forEach(input => {
 					if (target.getAttribute('id') == input) {
 						infoPersonToCalc[input] = event.target.value;
 					}
@@ -141,11 +141,11 @@ function calculator() {
 	defaultToCalc();
 	calcTotal(infoPersonToCalc);
 
-	sexPerson.forEach((person) => {
+	sexPerson.forEach(person => {
 		person.addEventListener('click', changeSexToPerson);
 	});
 
-	activityPerson.forEach((person) => {
+	activityPerson.forEach(person => {
 		person.addEventListener('click', changeActivityToPerson);
 	});
 
