@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		'tabheader__item_active',
 		'show',
 		'hide',
-		'fade'
+		'fade',
 	);
 	timer('2022-09-08', '.timer');
 	calculator();
