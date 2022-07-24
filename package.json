@@ -17,7 +17,8 @@
   "license": "ISC",
   "dependencies": {
     "del": "latest",
-    "gulp": "latest"
+    "gulp": "latest",
+    "swiper": "latest"
   },
   "devDependencies": {
     "@babel/core": "latest",
@@ -47,7 +48,6 @@
     "gulp-zip": "latest",
     "json-server": "latest",
     "sass": "latest",
-    "swiper": "latest",
     "vinyl-ftp": "latest",
     "webp-converter": "2.2.3",
     "webpack": "latest",
