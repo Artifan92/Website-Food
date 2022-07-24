@@ -20,9 +20,9 @@
     "gulp": "latest"
   },
   "devDependencies": {
-    "@babel/core": "^7.18.9",
-    "@babel/preset-env": "^7.18.9",
-    "babel-loader": "^8.2.5",
+    "@babel/core": "latest",
+    "@babel/preset-env": "latest",
+    "babel-loader": "latest",
     "browser-sync": "latest",
     "gulp-autoprefixer": "latest",
     "gulp-clean-css": "latest",
@@ -50,7 +50,7 @@
     "swiper": "latest",
     "vinyl-ftp": "latest",
     "webp-converter": "2.2.3",
-    "webpack": "^5.73.0",
+    "webpack": "latest",
     "webpack-stream": "latest"
   }
 }
